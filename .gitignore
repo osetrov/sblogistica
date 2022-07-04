@@ -8,6 +8,14 @@
 /.bundle
 /.idea
 
+*.gem
+*.rbc
+*.sassc
+.config
+.yardoc
+.rspec
+.sass-cache
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-*
