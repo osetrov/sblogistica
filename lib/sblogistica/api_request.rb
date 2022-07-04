@@ -140,7 +140,17 @@ module Sblogistica
     def configure_request(request: nil, params: nil, headers: nil, body: nil)
       if request
         request.params.merge!(params) if params
-        request.headers['X-Api-Key'] = Sblogistica::Request.api_key
+        case @request_builder.path_parts.try(:first)
+        when "ext"
+          request.headers['X-Api-Key'] = Sblogistica::Request.api_key
+        when "sbl-tariff"
+          request.headers['authorization'] = "Bearer #{Sblogistica::generate_access_token}"
+        when "admin", "internal"
+          request.headers['authorization'] = "Bearer #{Sblogistica::generate_access_token(system: "ADMIN_PANEL")}"
+        when "api"
+          request.headers['authorization'] = "Bearer #{Sblogistica::generate_access_token(system: "LK")}"
+        end
+
         request.headers['Content-Type'] = 'application/json'
         request.headers['User-Agent'] = "Sblogistica/#{Sblogistica::VERSION} Ruby gem"
         request.headers.merge!(headers) if headers

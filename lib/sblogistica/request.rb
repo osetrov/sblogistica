@@ -1,6 +1,7 @@
 module Sblogistica
   class Request
-    attr_accessor :api_key, :api_endpoint, :timeout, :open_timeout, :proxy, :ssl_options, :faraday_adapter, :symbolize_keys, :debug, :logger, :test
+    attr_accessor :api_key, :api_endpoint, :timeout, :open_timeout, :proxy, :ssl_options, :faraday_adapter,
+                  :symbolize_keys, :debug, :logger, :test, :path_parts
 
     DEFAULT_TIMEOUT = 60
     DEFAULT_OPEN_TIMEOUT = 60

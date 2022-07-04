@@ -9,9 +9,10 @@ require 'sblogistica/response'
 module Sblogistica
   class << self
 
-    def generate_access_token
+    def generate_access_token(system: 'LDAP')
       client = Faraday.new(Sblogistica.api_token_url, proxy: Sblogistica::Request.proxy,
                            ssl: Sblogistica::Request.ssl_options) do |faraday|
+        faraday.basic_auth(Sblogistica.api_client_id, Sblogistica.api_client_secret)
         faraday.response :raise_error
         faraday.adapter Faraday.default_adapter
         if Sblogistica::Request.debug
@@ -19,11 +20,12 @@ module Sblogistica
         end
       end
       response = client.post do |request|
+        request.params.merge!({system: system})
         request.headers['Content-Type'] = 'application/x-www-form-urlencoded'
         request.headers['User-Agent'] = "Sblogistica/#{Sblogistica::VERSION} Ruby gem"
-        request.body = "type=#{Sblogistica.api_grant_type}&client_id=#{Sblogistica.api_client_id}&client_secret=#{Sblogistica.api_client_secret}&username=#{Sblogistica.api_username}&password=#{Sblogistica.api_password}"
+        request.body = "grant_type=password&username=#{Sblogistica.api_username}&password=#{Sblogistica.api_password}"
       end
-      JSON.parse(response.body)
+      JSON.parse(response.body).try(:dig, "access_token")
     end
 
     def setup
