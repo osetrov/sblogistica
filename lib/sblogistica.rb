@@ -10,9 +10,23 @@ module Sblogistica
   class << self
 
     def generate_access_token
-      response = Faraday.post(
-        Sblogistica.api_token_url,
-        "type=#{Sblogistica.api_grant_type}&client_id=#{Sblogistica.api_client_id}&username=#{Sblogistica.api_username}&password=#{Sblogistica.api_password}")
+      client = Faraday.new(Sblogistica.api_token_url, proxy: Sblogistica::Request.proxy,
+                           ssl: Sblogistica::Request.ssl_options) do |faraday|
+        faraday.response :raise_error
+        faraday.adapter Faraday.default_adapter
+        if Sblogistica::Request.debug
+          faraday.response :logger, Sblogistica::Request.logger, bodies: true
+        end
+      end
+      response = client.post do |request|
+        request.body = MultiJson.dump({
+                                        type: Sblogistica.api_grant_type,
+                                        client_id: Sblogistica.api_client_id,
+                                        client_secret: Sblogistica.api_client_secret,
+                                        username: Sblogistica.api_username,
+                                        password: Sblogistica.api_password
+                                      })
+      end
       JSON.parse(response.body)
     end
 
