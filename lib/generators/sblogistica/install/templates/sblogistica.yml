@@ -1,9 +1,14 @@
 defaults: &defaults
   HOST: 'https://lk.sblogistica.ru'
+  API_TOKEN_URL: 'https://lk.sblogistica.ru/auth/oauth/token?system=LDAP'
+  API_GRANT_TYPE: 'request-body'
   API_KEY: '***'
+  API_USERNAME: '***'
+  API_PASSWORD: '***'
+  API_CLIENT_ID: '***'
+  API_CLIENT_SECRET: '***'
 production:
   <<: *defaults
-  API_KEY: '***'
 development:
   <<: *defaults
 test:

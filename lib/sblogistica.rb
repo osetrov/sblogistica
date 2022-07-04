@@ -8,6 +8,14 @@ require 'sblogistica/response'
 
 module Sblogistica
   class << self
+
+    def generate_access_token
+      response = Faraday.post(
+        Sblogistica.api_token_url,
+        "type=#{Sblogistica.api_grant_type}&client_id=#{Sblogistica.api_client_id}&username=#{Sblogistica.api_username}&password=#{Sblogistica.api_password}")
+      JSON.parse(response.body)
+    end
+
     def setup
       yield self
     end
