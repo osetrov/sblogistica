@@ -37,3 +37,8 @@ p Sblogistica::Request.ext.v1.warehouses.retrieve.body
 #        :contactPersons=>[{:uuid=>"0b16c6bb-bd39-4e01-9e59-dfe89d8cba48", :name=>"***", :phone=>"***"}]}]}
 
 ```
+
+```ruby
+p Sblogistica::Request.no_auth.banks.suggest.create(body: {query: "044030704"}).body
+#=> [{:name=>"Ф. ОПЕРУ БАНКА ВТБ (ПАО) В САНКТ-ПЕТЕРБУРГЕ", :bic=>"044030704", :inn=>"7702070139", :kpp=>"783543011", :correspondentAccount=>"30101810200000000704", :status=>"ACTIVE", :type=>"BANK_BRANCH"}]
+```
