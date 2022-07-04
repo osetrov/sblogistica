@@ -197,7 +197,7 @@ module Sblogistica
     end
 
     def base_api_url
-      "#{Sblogistica.host}/api/"
+      "#{Sblogistica.host || 'https://lk.sblogistica.ru'}/api/"
     end
   end
 end
