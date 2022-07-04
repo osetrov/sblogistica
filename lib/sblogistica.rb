@@ -22,7 +22,7 @@ module Sblogistica
         request.headers['Content-Type'] = 'application/json'
         request.headers['User-Agent'] = "Sblogistica/#{Sblogistica::VERSION} Ruby gem"
         request.body = MultiJson.dump({
-                                        type: Sblogistica.api_grant_type,
+                                        grant_type: Sblogistica.api_grant_type,
                                         client_id: Sblogistica.api_client_id,
                                         client_secret: Sblogistica.api_client_secret,
                                         username: Sblogistica.api_username,
