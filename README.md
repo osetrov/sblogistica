@@ -91,3 +91,28 @@ p Sblogistica::Request.sbl_tariff.api.clients.retrieve(params: {size: 1}).body
 #    :number=>0,
 #    :empty=>false}
 ```
+```ruby
+p Sblogistica::Request.api.address.book.retrieve.body
+# =>
+#   {:content=>[],
+#    :pageable=>{:sort=>{:sorted=>false, :unsorted=>true, :empty=>true}, :pageNumber=>0, :pageSize=>20, :offset=>0, :paged=>true, :unpaged=>false},
+#    :last=>true,
+#    :totalElements=>0,
+#    :totalPages=>0,
+#    :sort=>{:sorted=>false, :unsorted=>true, :empty=>true},
+#    :numberOfElements=>0,
+#    :first=>true,
+#    :size=>20,
+#    :number=>0,
+#    :empty=>true}
+```
+
+```ruby
+p Sblogistica::Request.internal.organizations.ids.freight_active.retrieve.body
+#`handle_error': the server responded with status 400 @title=nil, @detail=nil, @body={:errorCode=>"user.login.admin.panel.forbidden", :errorDescription=>"Access to the Admin panel is forbidden", :errorDescriptionRu=>"Доступ в Административную панель запрещен", :timestamp=>"2022-07-04 21:39:22"}, @raw_body="{\"errorCode\":\"user.login.admin.panel.forbidden\",\"errorDescription\":\"Access to the Admin panel is forbidden\",\"errorDescriptionRu\":\"\xD0\x94\xD0\xBE\xD1\x81\xD1\x82\xD1\x83\xD0\xBF \xD0\xB2 \xD0\x90\xD0\xB4\xD0\xBC\xD0\xB8\xD0\xBD\xD0\xB8\xD1\x81\xD1\x82\xD1\x80\xD0\xB0\xD1\x82\xD0\xB8\xD0\xB2\xD0\xBD\xD1\x83\xD1\x8E \xD0\xBF\xD0\xB0\xD0\xBD\xD0\xB5\xD0\xBB\xD1\x8C \xD0\xB7\xD0\xB0\xD0\xBF\xD1\x80\xD0\xB5\xD1\x89\xD0\xB5\xD0\xBD\",\"timestamp\":\"2022-07-04 21:39:22\"}", @status_code=400 (Sblogistica::Error)
+```
+
+```ruby
+p Sblogistica::Request.admin.managers.retrieve.body
+# `handle_error': the server responded with status 400 @title=nil, @detail=nil, @body={:errorCode=>"user.login.admin.panel.forbidden", :errorDescription=>"Access to the Admin panel is forbidden", :errorDescriptionRu=>"Доступ в Административную панель запрещен", :timestamp=>"2022-07-04 21:41:49"}, @raw_body="{\"errorCode\":\"user.login.admin.panel.forbidden\",\"errorDescription\":\"Access to the Admin panel is forbidden\",\"errorDescriptionRu\":\"\xD0\x94\xD0\xBE\xD1\x81\xD1\x82\xD1\x83\xD0\xBF \xD0\xB2 \xD0\x90\xD0\xB4\xD0\xBC\xD0\xB8\xD0\xBD\xD0\xB8\xD1\x81\xD1\x82\xD1\x80\xD0\xB0\xD1\x82\xD0\xB8\xD0\xB2\xD0\xBD\xD1\x83\xD1\x8E \xD0\xBF\xD0\xB0\xD0\xBD\xD0\xB5\xD0\xBB\xD1\x8C \xD0\xB7\xD0\xB0\xD0\xBF\xD1\x80\xD0\xB5\xD1\x89\xD0\xB5\xD0\xBD\",\"timestamp\":\"2022-07-04 21:41:49\"}", @status_code=400 (Sblogistica::Error)
+```
