@@ -19,6 +19,8 @@ module Sblogistica
         end
       end
       response = client.post do |request|
+        request.headers['Content-Type'] = 'application/json'
+        request.headers['User-Agent'] = "Sblogistica/#{Sblogistica::VERSION} Ruby gem"
         request.body = MultiJson.dump({
                                         type: Sblogistica.api_grant_type,
                                         client_id: Sblogistica.api_client_id,
