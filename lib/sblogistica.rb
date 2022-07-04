@@ -19,15 +19,9 @@ module Sblogistica
         end
       end
       response = client.post do |request|
-        request.headers['Content-Type'] = 'application/json'
+        request.headers['Content-Type'] = 'application/x-www-form-urlencoded'
         request.headers['User-Agent'] = "Sblogistica/#{Sblogistica::VERSION} Ruby gem"
-        request.body = MultiJson.dump({
-                                        grant_type: Sblogistica.api_grant_type,
-                                        client_id: Sblogistica.api_client_id,
-                                        client_secret: Sblogistica.api_client_secret,
-                                        username: Sblogistica.api_username,
-                                        password: Sblogistica.api_password
-                                      })
+        request.body = "grant_type=#{Sblogistica.api_grant_type}&client_id=#{Sblogistica.api_client_id}&client_secret=#{Sblogistica.api_client_secret}&username=#{Sblogistica.api_username}&password=#{Sblogistica.api_password}"
       end
       JSON.parse(response.body)
     end
