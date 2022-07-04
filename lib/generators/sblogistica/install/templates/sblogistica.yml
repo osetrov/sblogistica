@@ -1,5 +1,5 @@
 defaults: &defaults
-  HOST: 'https://api.dashamail.com'
+  HOST: 'https://lk.sblogistica.ru'
   API_KEY: '***'
 production:
   <<: *defaults
